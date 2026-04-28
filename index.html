@@ -64,6 +64,38 @@
     }
     .topnav-cta:hover { opacity: 0.85; }
 
+    /* Right-side container that holds the cross-vault link + main CTA. */
+    .topnav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Ghost-style pill linking to the sister vault. Defers visually to the
+       gold "Visit Main Site" CTA by using a transparent fill + gold border. */
+    .topnav-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid rgba(200, 184, 122, 0.4);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      font-family: var(--font-switzer);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .topnav-ghost:hover {
+      background: rgba(200, 184, 122, 0.08);
+      border-color: var(--accent);
+    }
+
+    /* Brand text swaps to a shorter form on mobile (see media query below). */
+    .brand-short { display: none; }
+
     /* HERO */
     .hero {
       position: relative;
@@ -290,7 +322,13 @@
 
     @media (max-width: 640px) {
       .topnav { padding: 0 1rem; }
-      .topnav-brand font-size: 0.85rem;
+      .topnav-brand { font-size: 0.85rem; }
+      /* Swap brand text to short form so two CTAs fit on small screens. */
+      .brand-full { display: none; }
+      .brand-short { display: inline; }
+      /* Hide arrow icons on the pills to save horizontal space. */
+      .topnav-ghost svg, .topnav-cta svg { display: none; }
+      .topnav-actions { gap: 6px; }
       .hero { padding: 52px 1.25rem 44px; }
       .filters { padding: 14px 1rem; }
       .grid-section { padding: 28px 1rem 48px; }
@@ -302,11 +340,21 @@
 
   <!-- TOP NAV -->
   <nav class="topnav">
-    <a href="https://www.doctorjohnna.com/" target="_blank" rel="noopener noreferrer" class="topnav-brand">Dr. Johnna | AI Resource Vault</a>
-    <a href="https://www.doctorjohnna.com/" target="_blank" rel="noopener noreferrer" class="topnav-cta">
-      Visit Main Site
-      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
+    <a href="https://www.doctorjohnna.com/" target="_blank" rel="noopener noreferrer" class="topnav-brand">
+      <span class="brand-full">Dr. Johnna | AI Resource Vault</span>
+      <span class="brand-short">Dr. Johnna</span>
     </a>
+    <div class="topnav-actions">
+      <!-- Cross-link to the sister Tech Resource Vault. -->
+      <a href="https://techvault.drjohnna.co/" target="_blank" rel="noopener noreferrer" class="topnav-ghost">
+        Tech Vault
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
+      </a>
+      <a href="https://www.doctorjohnna.com/" target="_blank" rel="noopener noreferrer" class="topnav-cta">
+        Visit Main Site
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
+      </a>
+    </div>
   </nav>
 
   <!-- HERO -->
